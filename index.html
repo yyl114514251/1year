@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>蓝本 · 年度人生规划器 2026</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <span class="logo-icon">🧭</span>
+        <div>
+          <h1>蓝本 <span class="badge">2026 年度版</span></h1>
+          <p class="subtitle">基于当前社会环境的大学生生涯决策辅助系统 · 年度战略规划</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-icon" id="resetBtn" title="重置所有数据">↺</button>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="profile">👤 个人画像</button>
+      <button class="tab" data-tab="environment">🌍 社会环境</button>
+      <button class="tab" data-tab="paths">📊 路径评估</button>
+      <button class="tab" data-tab="plan">🗓 年度规划</button>
+      <button class="tab" data-tab="advice">💡 建议锦囊</button>
+    </nav>
+
+    <!-- Tab: Profile -->
+    <section class="tab-content active" id="tab-profile">
+      <div class="card">
+        <h2 class="card-title">填写你的个人画像</h2>
+        <p class="card-desc">信息越完整，后续的路径评估和年度规划越精准。所有数据仅存在你的浏览器本地。</p>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>专业</label>
+            <input type="text" id="pMajor" placeholder="如：软件工程" value="软件工程" />
+          </div>
+          <div class="field">
+            <label>年级</label>
+            <select id="pGrade">
+              <option value="freshman">大一</option>
+              <option value="sophomore" selected>大二</option>
+              <option value="junior">大三</option>
+              <option value="senior">大四</option>
+              <option value="gap">Gap/已毕业</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>学校层次</label>
+            <select id="pSchool">
+              <option value="985">985</option>
+              <option value="211" selected>211</option>
+              <option value="doublefirst">双一流</option>
+              <option value="ordinary">普通本科</option>
+              <option value="college">专科</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>成绩排名（专业内）</label>
+            <select id="pGpa">
+              <option value="top5">前5%</option>
+              <option value="top15" selected>前15%</option>
+              <option value="top30">前30%</option>
+              <option value="top50">前50%</option>
+              <option value="bottom">后50%</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>家庭经济状况</label>
+            <select id="pFinance">
+              <option value="wealthy">富裕（年入50万+）</option>
+              <option value="middle" selected>中产（年入15-50万）</option>
+              <option value="ordinary">普通（年入5-15万）</option>
+              <option value="poor">困难（年入5万以下）</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>风险偏好</label>
+            <select id="pRisk">
+              <option value="aggressive">激进（高风险高回报）</option>
+              <option value="balanced" selected>均衡</option>
+              <option value="conservative">保守（求稳）</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label>核心目标（可多选，按重要性排序点击）</label>
+            <div class="chip-group" id="goalChips">
+              <span class="chip" data-value="money">💰 高收入</span>
+              <span class="chip" data-value="stable">🏛 稳定</span>
+              <span class="chip" data-value="academic">🎓 学术深造</span>
+              <span class="chip" data-value="impact">🌟 社会影响力</span>
+              <span class="chip" data-value="freedom">🕊 自由灵活</span>
+              <span class="chip" data-value="growth">📈 快速成长</span>
+            </div>
+          </div>
+          <div class="field field-full">
+            <label>兴趣方向（可多选）</label>
+            <div class="chip-group" id="interestChips">
+              <span class="chip" data-value="ai">🤖 AI/大模型</span>
+              <span class="chip" data-value="frontend">🎨 前端/设计</span>
+              <span class="chip" data-value="backend">⚙️ 后端/架构</span>
+              <span class="chip" data-value="security">🔒 网络安全</span>
+              <span class="chip" data-value="data">📊 数据分析</span>
+              <span class="chip" data-value="product">📱 产品/运营</span>
+              <span class="chip" data-value="research">🔬 科研</span>
+              <span class="chip" data-value="hardware">💾 硬件/嵌入式</span>
+            </div>
+          </div>
+          <div class="field field-full">
+            <label>特殊约束（可多选）</label>
+            <div class="chip-group" id="constraintChips">
+              <span class="chip" data-value="hometown">🏠 必须回家乡</span>
+              <span class="chip" data-value="nodelay">⏰ 不想再读书</span>
+              <span class="chip" data-value="health">💊 身体条件有限</span>
+              <span class="chip" data-value="family">👨‍👩‍👧 家庭需要照顾</span>
+              <span class="chip" data-value="no996">🚫 拒绝996</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-primary" id="analyzeBtn">🔍 生成我的年度规划</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab: Environment -->
+    <section class="tab-content" id="tab-environment">
+      <div class="env-header">
+        <h2>2026 年社会环境全景</h2>
+        <p>以下数据来自麦可思《2026中国本科生就业报告》、新东方考研形势分析、国考招录数据、各国留学政策及工信部创业支持计划，截至2026年9月。</p>
+      </div>
+      <div class="env-cards" id="envCards"></div>
+      <div class="card" id="aiImpactCard">
+        <h2 class="card-title">🤖 AI 对各行业的冲击与机遇</h2>
+        <div id="aiImpactContent"></div>
+      </div>
+    </section>
+
+    <!-- Tab: Paths -->
+    <section class="tab-content" id="tab-paths">
+      <div class="paths-header">
+        <h2>五条路径综合评估</h2>
+        <p id="pathsSubtitle">基于你的个人画像，系统对五条主流发展路径进行了多维度加权评分。</p>
+      </div>
+      <div class="ranking-list" id="rankingList"></div>
+      <div class="path-detail" id="pathDetail"></div>
+    </section>
+
+    <!-- Tab: Plan -->
+    <section class="tab-content" id="tab-plan">
+      <div class="plan-header">
+        <h2 id="planTitle">你的年度战略规划</h2>
+        <p id="planSubtitle"></p>
+      </div>
+
+      <div class="plan-section">
+        <h3>🎯 年度核心目标</h3>
+        <div class="goals-grid" id="annualGoals"></div>
+      </div>
+
+      <div class="plan-section">
+        <h3>📅 12个月里程碑</h3>
+        <div class="timeline-year" id="yearTimeline"></div>
+      </div>
+
+      <div class="plan-section">
+        <h3>🛠 能力建设清单</h3>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+
+      <div class="plan-section">
+        <h3>📚 资源推荐</h3>
+        <div class="resources-grid" id="resourcesGrid"></div>
+      </div>
+
+      <div class="plan-section">
+        <h3>⏰ 关键时间节点</h3>
+        <div class="deadline-list" id="deadlineList"></div>
+      </div>
+    </section>
+
+    <!-- Tab: Advice -->
+    <section class="tab-content" id="tab-advice">
+      <div class="advice-header">
+        <h2>💡 全方位建议锦囊</h2>
+        <p>结合你的画像和当前社会环境，从八个维度给出具体可执行的建议。</p>
+      </div>
+      <div class="advice-tabs" id="adviceTabs"></div>
+      <div class="advice-content" id="adviceContent"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>蓝本 · 年度人生规划器 | 数据截至2026年9月 | 仅供参考，重大决策请结合自身实际情况</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
